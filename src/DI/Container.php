@@ -202,6 +202,18 @@ class Container
     }
 
     /**
+     * Enables or disables file validation.
+     * Should only be enabled on in development environments due to its performance impact.
+     * By default it is disabled.
+     *
+     * @param boolean $validateDefinitions
+     */
+    public function validateDefinitions($validateDefinitions)
+    {
+        $this->configuration->validateDefinitions($validateDefinitions);
+    }
+
+    /**
      * @return DefinitionSource The definition source
      */
     public function getDefinitionSource()
@@ -237,6 +249,8 @@ class Container
 
     /**
      * @param ClassDefinition $classDefinition
+     * @throws DependencyException
+     * @throws \Exception
      * @return object The instance
      */
     private function getNewInstance(ClassDefinition $classDefinition)

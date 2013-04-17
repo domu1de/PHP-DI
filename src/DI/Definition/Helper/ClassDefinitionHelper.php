@@ -38,8 +38,9 @@ class ClassDefinitionHelper
 
     /**
      * Bind the entry to a class
+     *
      * @param string $className
-     * @return $this
+     * @return ClassDefinitionHelper
      */
     public function bindTo($className)
     {
@@ -49,8 +50,9 @@ class ClassDefinitionHelper
 
     /**
      * Set the scope for the class
+     *
      * @param Scope $scope
-     * @return $this
+     * @return ClassDefinitionHelper
      */
     public function withScope(Scope $scope)
     {
@@ -60,10 +62,11 @@ class ClassDefinitionHelper
 
     /**
      * Define a property injection
+     *
      * @param string $propertyName Property name
      * @param string $entryToInject Name of the entry that should be injected in the property
      * @param bool   $lazy If the injected object should be a proxy for lazy-loading
-     * @return $this
+     * @return ClassDefinitionHelper
      */
     public function withProperty($propertyName, $entryToInject, $lazy = false)
     {
@@ -73,8 +76,9 @@ class ClassDefinitionHelper
 
     /**
      * Injections using the constructor
+     *
      * @param string[] $params Parameters for the constructor: array of container entries names
-     * @return $this
+     * @return ClassDefinitionHelper
      */
     public function withConstructor(array $params)
     {
@@ -88,8 +92,10 @@ class ClassDefinitionHelper
 
     /**
      * Injections by calling a method of the class
+     *
+     * @param string $methodName
      * @param string[] $params Parameters for the method: array of container entries names
-     * @return $this
+     * @return ClassDefinitionHelper
      */
     public function withMethod($methodName, array $params)
     {

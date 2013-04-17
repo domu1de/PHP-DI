@@ -60,6 +60,11 @@ class Configuration
     private $annotationSource;
 
     /**
+     * @var boolean
+     */
+    private $validateDefinitions = false;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -141,7 +146,7 @@ class Configuration
     /**
      * Add definitions from an array
      *
-     * @param array $definitions
+     * @param Definition $definition
      */
     public function addDefinition(Definition $definition)
     {
@@ -156,6 +161,7 @@ class Configuration
      */
     public function addDefinitionsFromFile(DefinitionFileLoader $definitionFileLoader)
     {
+        $definitionFileLoader->validateFile($this->validateDefinitions);
         $definitions = $definitionFileLoader->load();
 
         if (!is_array($definitions)) {
@@ -189,4 +195,15 @@ class Configuration
         }
     }
 
+    /**
+     * Enables or disables file validation.
+     * Should only be enabled on in development environments due to its performance impact.
+     * By default it is disabled.
+     *
+     * @param boolean $validateDefinitions
+     */
+    public function validateDefinitions($validateDefinitions)
+    {
+        $this->validateDefinitions = $validateDefinitions;
+    }
 }

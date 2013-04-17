@@ -28,7 +28,7 @@ abstract class DefinitionFileLoader
     /**
      * @var bool
      */
-    protected $validateFile;
+    protected $validateFile = false;
 
     /**
      * @param string $pathAndFilename
@@ -44,6 +44,18 @@ abstract class DefinitionFileLoader
             throw new ParseException("The definition file '$pathAndFilename' is not readable");
         }
         $this->definitionFile = $pathAndFilename;
+        $this->validateFile = $validateFile;
+    }
+
+    /**
+     * Enables or disables file validation.
+     * Should only be enabled on in development environments due to its performance impact.
+     * By default it is disabled.
+     *
+     * @param boolean $validateFile
+     */
+    public function validateFile($validateFile)
+    {
         $this->validateFile = $validateFile;
     }
 
